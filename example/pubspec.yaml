@@ -1,0 +1,17 @@
+name: fake_store_example
+description: Ejemplo de uso del paquete fake_store_api.
+publish_to: 'none'
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+  api_connections_package:
+    path: ../
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

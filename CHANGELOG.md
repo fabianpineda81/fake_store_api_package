@@ -22,4 +22,9 @@ All notable changes to this project will be documented in this file.
 ## 0.0.2
 
 ### Added
-- Se permite ver de manera mas eficiento el example.
+- Se permite ver de manera mas eficiente el example.
+
+## 0.0.3
+
+### Added
+- Se agregaron comentarios en el example.

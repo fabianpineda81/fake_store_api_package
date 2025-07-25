@@ -18,3 +18,8 @@ All notable changes to this project will be documented in this file.
 - 📦 Estructura inmutable y desacoplada.
 - 🔄 Posibilidad de usar repositorios personalizados.
 - ✅ Preparado para pruebas unitarias.
+
+## 0.0.2
+
+### Added
+- Se permite ver de manera mas eficiento el example.

@@ -16,6 +16,7 @@ class ProductDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Instanciamos ProductApi, que nos va a ayudar a traer la información relacionada con los productos.
     final api = ProductApi();
 
     return Scaffold(
@@ -29,6 +30,7 @@ class ProductDetailPage extends StatelessWidget {
           title: const Text('Detalle del producto')
       ),
       body: FutureBuilder(
+        // Obtenemos un producto utilizando su ID.
         future: api.getProductById(productId),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -40,6 +42,8 @@ class ProductDetailPage extends StatelessWidget {
           }
 
           final either = snapshot.data!;
+          // Leemos la respuesta de la API. Si ocurre un error, lo mostramos en pantalla.
+          // Si la respuesta es exitosa, mostramos los datos del producto.
           return either.fold(
                 (failure) => Center(child: Text('Error: ${failure.description}')),
                 (product) => Padding(
@@ -79,12 +83,14 @@ class ProductListPage extends StatefulWidget {
 }
 
 class _ProductListPageState extends State<ProductListPage> {
+  // Instanciamos ProductApi, que nos va a ayudar a traer la información relacionada con los productos.
   final _productApi = ProductApi();
   late Future<dartz.Either<Failure, List<Product>>> _futureProducts;
 
   @override
   void initState() {
     super.initState();
+    // Obtenemos todos los productos al iniciar la página.
     _futureProducts = _productApi.getAllProducts();
   }
 
@@ -104,7 +110,8 @@ class _ProductListPageState extends State<ProductListPage> {
           }
 
           final result = snapshot.data!;
-
+          // Leemos la respuesta de la API. Si ocurre un error, lo mostramos en pantalla.
+          // Si la respuesta es exitosa, mostramos la lista de productos.
           return result.fold(
                 (failure) => Center(child: Text('Error: ${failure.description}')),
                 (products) {

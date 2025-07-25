@@ -1,6 +1,6 @@
 name: api_connections_package
 
-description: A Dart/Flutter package to interact with the Fake Store API (products, users, carts) with Dio and dartz.
+description: Un paquete Dart/Flutter para interactuar con la API de Fake Store (productos, usuarios, carritos) con Dio y dartz.
 version: 0.0.1
 publish_to: https://pub.dev
 

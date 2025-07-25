@@ -1,6 +1,6 @@
 # 📦 api_connections_package
 
-`api_connections_package` es un paquete Flutter que proporciona una capa de abstracción para conectarse fácilmente con la [Fake Store API](https://fakestoreapi.com/) utilizando `Dio` y `dartz`. Está pensado para que puedas integrarlo rápida y limpiamente en tus aplicaciones Flutter o Dart.
+`api_connections_package` es un paquete Flutter que proporciona una capa de abstracción para conectarse fácilmente con la [Fake Store API](https://fakestoreapi.com/) utilizando `Dio` y `dartz`. Está pensado para que puedas integrarlo rápida y limpiamente en tus aplicaciones Flutter.
 
 ---
 

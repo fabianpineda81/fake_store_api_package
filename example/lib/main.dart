@@ -17,7 +17,7 @@ class ProductDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Instanciamos ProductApi, que nos va a ayudar a traer la información relacionada con los productos.
-    final api = ProductApi();
+    final _fakeStoreApi = FakeStoreApi();();
 
     return Scaffold(
       appBar: AppBar(
@@ -31,7 +31,7 @@ class ProductDetailPage extends StatelessWidget {
       ),
       body: FutureBuilder(
         // Obtenemos un producto utilizando su ID.
-        future: api.getProductById(productId),
+        future: _fakeStoreApi.products.getProductById(productId),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -84,14 +84,14 @@ class ProductListPage extends StatefulWidget {
 
 class _ProductListPageState extends State<ProductListPage> {
   // Instanciamos ProductApi, que nos va a ayudar a traer la información relacionada con los productos.
-  final _productApi = ProductApi();
+  final _fakeStoreApi = FakeStoreApi();
   late Future<dartz.Either<Failure, List<Product>>> _futureProducts;
 
   @override
   void initState() {
     super.initState();
     // Obtenemos todos los productos al iniciar la página.
-    _futureProducts = _productApi.getAllProducts();
+    _futureProducts = _fakeStoreApi.products.getAllProducts();
   }
 
   @override

@@ -19,38 +19,24 @@ Luego ejecuta:
 flutter pub get
 ```
 
-
 ---
+
 ✨ Características
 
-
-✅ Obtener todos los productos
-
-🔍 Buscar un producto por ID
-
-👤 Obtener todos los usuarios
-
-👤 Buscar usuario por ID
-
-🛒 Consultar todos los carritos de compras
-
-🛒 Buscar carrito por ID
-
-🛒 Consultar carritos por usuario
-
-📅 Consultar carritos entre fechas
-
-💥 Manejo de errores con Either (dartz)
-
-📦 Estructura inmutable y desacoplada
-
-🔄 Posibilidad de usar repositorios personalizados
-
+✅ Obtener todos los productos  
+🔍 Buscar un producto por ID  
+👤 Obtener todos los usuarios  
+👤 Buscar usuario por ID  
+🛒 Consultar todos los carritos de compras  
+🛒 Buscar carrito por ID  
+🛒 Consultar carritos por usuario  
+📅 Consultar carritos entre fechas  
+💥 Manejo de errores con Either (dartz)  
+📦 Estructura inmutable y desacoplada  
+🔄 Posibilidad de usar repositorios personalizados  
 ✅ Preparado para pruebas unitarias
-    
+
 ---
-
-
 
 ## 🛠️ Uso
 
@@ -60,14 +46,32 @@ Primero importa el paquete:
 import 'package:api_connections_package/api_connections_package.dart';
 ```
 
+### 🔹 Inicialización
+
+El paquete cuenta con una **única puerta de entrada** llamada `FakeStoreApi`.  
+Desde esta instancia puedes acceder a `products`, `users` y `carts`:
+
+```dart
+final store = FakeStoreApi();
+```
+
+Si necesitas usar tus propios repositorios (por ejemplo, para pruebas), puedes pasarlos como parámetros:
+
+```dart
+final store = FakeStoreApi(
+  productRepository: MyCustomProductRepository(),
+  userRepository: MyCustomUserRepository(),
+  cartRepository: MyCustomCartRepository(),
+);
+```
+
+---
 
 ### 🔹 Productos
 
 ```dart
-final productApi = ProductApi();
-
 // Obtener todos los productos
-final result = await productApi.getAllProducts();
+final result = await store.products.getAllProducts();
 
 result.fold(
   (failure) => print('Error: ${failure.message}'),
@@ -75,7 +79,7 @@ result.fold(
 );
 
 // Obtener producto por ID
-final resultById  = await productApi.getProductById(1);
+final resultById = await store.products.getProductById(1);
 
 resultById.fold(
   (failure) => print('Error: ${failure.message}'),
@@ -83,13 +87,13 @@ resultById.fold(
 );
 ```
 
+---
+
 ### 🔹 Usuarios
 
 ```dart
-final userApi = UserApi();
-
 // Obtener todos los usuarios
-final result = await userApi.getAllUsers();
+final result = await store.users.getAllUsers();
 
 result.fold(
   (failure) => print('Error: ${failure.message}'),
@@ -97,7 +101,7 @@ result.fold(
 );
 
 // Obtener usuario por ID
-final result2 = await userApi.getUserById(1);
+final result2 = await store.users.getUserById(1);
 
 result2.fold(
   (failure) => print('Error: ${failure.message}'),
@@ -105,13 +109,13 @@ result2.fold(
 );
 ```
 
+---
+
 ### 🔹 Carritos
 
 ```dart
-final cartApi = CartApi();
-
 // Obtener carrito por ID
-final result2 = await cartApi.getCartById(2);
+final result2 = await store.carts.getCartById(2);
 
 result2.fold(
   (failure) => print('Error: ${failure.message}'),
@@ -119,14 +123,15 @@ result2.fold(
 );
 ```
 
-
+---
 
 ## 🧪 Pruebas
 
-Este paquete está preparado para pruebas . Puedes agregar tus mocks personalizados para testear las APIs.
+Este paquete está preparado para pruebas.  
+Puedes pasar **repositorios mock** al crear la instancia de `FakeStoreApi`:
 
 ```dart
-import 'package:api_connections_package/api_connections_pakage.dart';
+import 'package:api_connections_package/api_connections_package.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -151,9 +156,9 @@ class MockProductRepository implements ProductRepository {
 
 void main() {
   test('Debería retornar productos mockeados', () async {
-    final productApi = ProductApi(repository: MockProductRepository());
+    final store = FakeStoreApi(productRepository: MockProductRepository());
 
-    final result = await productApi.getAllProducts();
+    final result = await store.products.getAllProducts();
 
     expect(result.isRight(), true);
     result.fold(
@@ -164,14 +169,12 @@ void main() {
 }
 ```
 
-
 ---
 
 ## 📄 Licencia
 
 MIT License © 2025 Fabian Pineda
 
-
 ## 🌐 Fake Store API
 
-Este paquete se conecta a: [https://fakestoreapi.com/](https://fakestoreapi.com/)
+Este paquete se conecta a: [https://fakestoreapi.com/](https://fakestoreapi.com/)  

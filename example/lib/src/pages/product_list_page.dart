@@ -11,13 +11,13 @@ class ProductListPage extends StatefulWidget {
 }
 
 class _ProductListPageState extends State<ProductListPage> {
-  final _productApi = ProductApi();
+  final _fakeStoreApi = FakeStoreApi();
   late Future<dartz.Either<Failure, List<Product>>> _futureProducts;
 
   @override
   void initState() {
     super.initState();
-    _futureProducts = _productApi.getAllProducts();
+    _futureProducts = _fakeStoreApi.products.getAllProducts();
   }
 
   @override

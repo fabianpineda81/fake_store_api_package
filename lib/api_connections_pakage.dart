@@ -1,6 +1,9 @@
 library ;
 
 // Exponer API principal
+export 'api/cart_api.dart';
+export 'api/product_api.dart';
+export 'api/user_api.dart';
 export 'api/fakeStoreApi.dart';
 
 //  modelos
